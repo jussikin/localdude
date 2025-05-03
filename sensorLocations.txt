@@ -1,0 +1,4 @@
+location, influxpath
+kellari = kellari/*
+makuuhuone = makuuhuone/* , netmakkari/*
+keittiö = netatmo/*

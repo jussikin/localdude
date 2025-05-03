@@ -1,0 +1,39 @@
+{
+    "name": "localdude",
+    "version": "1.0.0",
+    "description": "A Node.js/TypeScript project using the Model Context Protocol (MCP) SDK with InfluxDB integration",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "tsc && node dist/index.js",
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "server": "tsc && node dist/server.js",
+        "dev": "nodemon --exec \"npm run start\"",
+        "dev:server": "nodemon --exec \"npm run server\""
+    },
+    "keywords": ["mcp", "influxdb", "typescript", "node", "time-series"],
+    "author": "LocalDude Team",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/username/localdude.git"
+    },
+    "bugs": {
+        "url": "https://github.com/username/localdude/issues"
+    },
+    "homepage": "https://github.com/username/localdude#readme",
+    "devDependencies": {
+        "nodemon": "^3.0.1",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@influxdata/influxdb-client": "^1.35.0",
+        "@modelcontextprotocol/sdk": "^1.10.2",
+        "axios": "^1.6.0",
+        "dotenv": "^16.5.0",
+        "openai": "^4.95.1",
+        "zod": "^3.22.4"
+    }
+}
