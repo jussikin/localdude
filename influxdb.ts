@@ -10,12 +10,13 @@ const token = process.env.INFLUXDB_TOKEN || '';
 const org = process.env.INFLUXDB_ORG || '';
 const bucket = process.env.INFLUXDB_BUCKET || '';
 
-// Log environment variables for debugging (using stderr to avoid interfering with MCP)
+/* Log environment variables for debugging (using stderr to avoid interfering with MCP)
 console.error('InfluxDB Configuration:');
 console.error(`URL: ${url}`);
 console.error(`Token: ${token ? `${token.substring(0, 5)}...${token.substring(token.length - 5)}` : 'Not set'}`);
 console.error(`Organization: ${org || 'Not set'}`);
 console.error(`Bucket: ${bucket || 'Not set'}`);
+*/
 
 // Create InfluxDB client
 const influxDB = new InfluxDB({ url, token });

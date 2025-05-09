@@ -20,14 +20,6 @@ const server = new McpServer({
 
 
 
-// Add an addition tool
-server.tool("add",
-    { a: z.number(), b: z.number() },
-    async ({ a, b }) => ({
-        content: [{ type: "text", text: String(a + b) }]
-    })
-);
-
 // Add InfluxDB query tool
 server.tool("influxdb-query",
     { query: z.string() },
@@ -140,38 +132,32 @@ server.tool("read-sensors-map", {}, async () => {
     }
 });
 
+server.tool("measurements-recent",
+    {},
+    async () => {
+        try {
+            const measurements = await getRecentActiveMeasurements();
 
+            return {
+                content: [{
+                    type: "text",
+                    text: JSON.stringify(measurements, null, 2),
+                    mimeType: "application/json"
+                }]
+            };
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : String(error);
 
-// Actual resource for the file statictest:/test
-server.resource(
-    "statictest-test",
-    "statictest:/test",
-    async () => ({
-        contents: [
-            {
-                uri: "statictest:/test",
-                blob: "pppo",
-                mimeType: "text/plain"
-            }
-        ]
-    })
-);
-
-server.resource(
-    'greeting-resource',
-    'https://example.com/greetings/default',
-    { mimeType: 'text/plain' },
-    async (): Promise<any> => {
-        return {
-            contents: [
-                {
-                    uri: 'https://example.com/greetings/default',
-                    text: 'Hello, world!',
-                },
-            ],
-        };
+            return {
+                content: [{
+                    type: "text",
+                    text: JSON.stringify({ error: `Error getting recent measurements: ${errorMessage}` }, null, 2),
+                    mimeType: "application/json"
+                }]
+            };
+        }
     }
-);
+)
 
 
 
